@@ -8,13 +8,13 @@ interface IAccountRepository {
 
 class AccountRepository implements IAccountRepository {
   constructor( 
-    private readonly collection : Collection
+    private readonly db : Collection
   ) {
     
   }
 
   public async fetch(filter: Partial<Account>): Promise<Account[]> {
-    return this.collection.find(filter).toArray();
+    return this.db.find(filter).toArray();
   }
   
 }

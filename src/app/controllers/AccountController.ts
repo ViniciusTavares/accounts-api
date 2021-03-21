@@ -1,7 +1,11 @@
 import { Context, Next } from 'koa';
 import AccountService from '../../domain/account/AccountService';
 
-class AccountController {
+interface IAccountController { 
+  fetchAccounts(ctx: Context, next: Next): void
+}
+
+class AccountController implements IAccountController {
   private readonly accountService : AccountService;
 
   constructor(

@@ -2,8 +2,9 @@ import { Collection, Db, MongoClient } from 'mongodb';
 
 import dbConfig from '../config';
 import transformConnectionString from '../utils/transform-connection-string';
+import DataProvider from '../DataProvider'; 
 
-export default class MongoConnection {
+export default class MongoConnection implements DataProvider {
   private static instance: MongoConnection;
 
   private conn: Db;
@@ -21,7 +22,7 @@ export default class MongoConnection {
     return MongoConnection.instance;
   }
 
-  public collection(name: string): Collection {
+  public db(name: string): Collection {
     return this.conn.collection(name);
   }
 

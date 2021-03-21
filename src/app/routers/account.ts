@@ -10,7 +10,7 @@ const controller = dependencyContainer.get(
 ) as AccountController;
 
 const router = new Router({
-  prefix: '/product',
+  prefix: '/accounts',
 });
 
 router.get('/', (...args) =>

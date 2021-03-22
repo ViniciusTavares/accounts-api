@@ -6,10 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const router_1 = __importDefault(require("@koa/router"));
 const container_1 = __importDefault(require("../dependency-container/container"));
 const dependency_enum_1 = __importDefault(require("../dependency-container/dependency.enum"));
-const controller = container_1.default.get(dependency_enum_1.default.ACCOUNT_CONTROLLER);
-const router = new router_1.default({
-    prefix: '/product',
-});
-router.get('/', (...args) => controller.fetchAccounts(...args));
-exports.default = router;
+exports.default = () => {
+    const controller = container_1.default.getInstance().get(dependency_enum_1.default.ACCOUNT_CONTROLLER);
+    const router = new router_1.default({
+        prefix: '/accounts',
+    });
+    router.get('/', (...args) => controller.fetchAccounts(...args));
+    return router;
+};
 //# sourceMappingURL=account.js.map

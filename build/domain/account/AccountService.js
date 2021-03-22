@@ -13,9 +13,15 @@ class AccountService {
     constructor({ accountRepository }) {
         this.accountRepository = accountRepository;
     }
-    fetchAccounts() {
+    fetchAccounts(filter, sort) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.accountRepository.fetch();
+            return this.accountRepository.fetch(filter, sort);
+        });
+    }
+    fetchAccountsForCSV(filter, sort) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const accounts = yield this.accountRepository.fetch(filter, sort);
+            return accounts;
         });
     }
 }

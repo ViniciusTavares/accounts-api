@@ -15,9 +15,14 @@ class AccountController implements IAccountController {
   }
 
   async fetchAccounts(ctx: Context, next: Next) {    
+    const filter = ctx.query.filter; // as filter
+    const sort = ctx.query.sort; // as sort
+
+    
+    const result = await this.accountService.fetchAccounts(filter ?? {}, sort);
+
     ctx.response.status = 200;
-    this.accountService.fetchAccounts();
-    ctx.response.body = {};
+    ctx.response.body = result ;
   }
 }
 

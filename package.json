@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/tsc --build tsconfig.json",
-    "start": "node build/src/app",
-    "start:dev": "node -r dotenv/config -r ts-node/register src/app",
+    "start": "node build/src",
+    "start:dev": "node -r dotenv/config -r ts-node/register src",
     "migration:create": "npm mongo-migrate create",
     "test:unit": "node_modules/.bin/jest tests/unit"
   },

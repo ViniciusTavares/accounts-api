@@ -7,7 +7,7 @@ const env_var_1 = __importDefault(require("env-var"));
 const exceptForTests = process.env.NODE_ENV !== 'test';
 const db = Object.freeze({
     connection: {
-        host: env_var_1.default.get('DB_HOST').required(exceptForTests).asString(),
+        url: env_var_1.default.get('DB_URL').required(exceptForTests).asString(),
         user: env_var_1.default.get('DB_USER').required(exceptForTests).asString(),
         password: env_var_1.default.get('DB_PASSWORD').required(exceptForTests).asString(),
         database: env_var_1.default.get('DB_DATABASE').required(exceptForTests).asString()

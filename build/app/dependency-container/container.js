@@ -7,13 +7,19 @@ const MongoProvider_1 = __importDefault(require("../../infrastructure/storage/Pr
 const AccountRepository_1 = __importDefault(require("../../infrastructure/repositories/AccountRepository"));
 const AccountService_1 = __importDefault(require("../../domain/account/AccountService"));
 const AccountController_1 = __importDefault(require("../controllers/AccountController"));
-const config_1 = __importDefault(require("../../infrastructure/storage/config"));
+const config_1 = __importDefault(require("../../app/config"));
 class DependencyContainer {
     constructor() {
         this.mongoProvider = MongoProvider_1.default.getInstance();
-        this.accountRepository = new AccountRepository_1.default(this.mongoProvider.collection(config_1.default.collections.accounts));
+        this.accountRepository = new AccountRepository_1.default(this.mongoProvider.db(config_1.default.database.collections.accounts));
         this.accountService = new AccountService_1.default({ accountRepository: this.accountRepository });
-        this.accountController = new AccountController_1.default({ service: this.accountService });
+        this.accountController = new AccountController_1.default(this.accountService);
+    }
+    static getInstance() {
+        if (!DependencyContainer.instance) {
+            DependencyContainer.instance = new DependencyContainer();
+        }
+        return DependencyContainer.instance;
     }
     get(dependency) {
         const requestedDependency = this[dependency];
@@ -23,5 +29,5 @@ class DependencyContainer {
         return requestedDependency;
     }
 }
-exports.default = new DependencyContainer();
+exports.default = DependencyContainer;
 //# sourceMappingURL=container.js.map

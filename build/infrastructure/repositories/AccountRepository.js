@@ -10,12 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 class AccountRepository {
-    constructor(collection) {
-        this.collection = collection;
+    constructor(db) {
+        this.db = db;
     }
-    fetch(filter) {
+    fetch(filter, sort) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.collection.find(filter).toArray();
+            return this.db
+                .find(filter)
+                .sort(sort)
+                .toArray();
         });
     }
 }

@@ -1,11 +1,11 @@
 import { Collection, Db, MongoClient } from 'mongodb';
 
-import dbConfig from '../config';
+import config from '../../../app/config';
 import transformConnectionString from '../utils/transform-connection-string';
-import DataProvider from '../DataProvider'; 
+import DataProvider from './DataProvider'; 
 
-export default class MongoConnection implements DataProvider {
-  private static instance: MongoConnection;
+export default class MongoProvider implements DataProvider {
+  private static instance: MongoProvider;
 
   private conn: Db;
 
@@ -14,12 +14,12 @@ export default class MongoConnection implements DataProvider {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private constructor() {}
 
-  public static getInstance(): MongoConnection {
-    if (!MongoConnection.instance) {
-      MongoConnection.instance = new MongoConnection();
+  public static getInstance(): MongoProvider {
+    if (!MongoProvider.instance) {
+      MongoProvider.instance = new MongoProvider();
     }
 
-    return MongoConnection.instance;
+    return MongoProvider.instance;
   }
 
   public db(name: string): Collection {
@@ -31,14 +31,15 @@ export default class MongoConnection implements DataProvider {
   }
 
   public async connect() {
-    const client = new MongoClient(transformConnectionString(dbConfig), {
+    const connectionString = transformConnectionString(config.database.connection);
+    const client = new MongoClient(connectionString, {
       useUnifiedTopology: true,
     });
     this.client = client;
 
     try {
       await client.connect();
-      this.conn = client.db(dbConfig.connection.database);
+      this.conn = client.db(config.database.connection.database);
     } catch (e) {
       // logger.error(e.message, dbConfig.connection.url);
       throw e;

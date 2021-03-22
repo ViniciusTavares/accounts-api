@@ -15,9 +15,11 @@ class AccountController {
     }
     fetchAccounts(ctx, next) {
         return __awaiter(this, void 0, void 0, function* () {
+            const filter = ctx.query.filter; // as filter
+            const sort = ctx.query.sort; // as sort
+            const result = yield this.accountService.fetchAccounts(filter !== null && filter !== void 0 ? filter : {}, sort);
             ctx.response.status = 200;
-            this.accountService.fetchAccounts();
-            ctx.response.body = {};
+            ctx.response.body = result;
         });
     }
 }

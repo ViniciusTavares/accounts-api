@@ -13,18 +13,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongodb_1 = require("mongodb");
-const config_1 = __importDefault(require("../config"));
+const config_1 = __importDefault(require("../../../app/config"));
 const transform_connection_string_1 = __importDefault(require("../utils/transform-connection-string"));
-class MongoConnection {
+class MongoProvider {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     constructor() { }
     static getInstance() {
-        if (!MongoConnection.instance) {
-            MongoConnection.instance = new MongoConnection();
+        if (!MongoProvider.instance) {
+            MongoProvider.instance = new MongoProvider();
         }
-        return MongoConnection.instance;
+        return MongoProvider.instance;
     }
-    collection(name) {
+    db(name) {
         return this.conn.collection(name);
     }
     connection() {
@@ -32,13 +32,14 @@ class MongoConnection {
     }
     connect() {
         return __awaiter(this, void 0, void 0, function* () {
-            const client = new mongodb_1.MongoClient(transform_connection_string_1.default(config_1.default), {
+            const connectionString = transform_connection_string_1.default(config_1.default.database.connection);
+            const client = new mongodb_1.MongoClient(connectionString, {
                 useUnifiedTopology: true,
             });
             this.client = client;
             try {
                 yield client.connect();
-                this.conn = client.db(config_1.default.connection.database);
+                this.conn = client.db(config_1.default.database.connection.database);
             }
             catch (e) {
                 // logger.error(e.message, dbConfig.connection.url);
@@ -58,5 +59,5 @@ class MongoConnection {
         });
     }
 }
-exports.default = MongoConnection;
+exports.default = MongoProvider;
 //# sourceMappingURL=MongoProvider.js.map

@@ -16,9 +16,9 @@ This repository is a sample of Microservices using NodeJS, Typescript, MongoDB, 
 - Docker
 - Docker Compose 
 
-* If you're using nvm, just run ```nvm install``` and it resolve the proper Node version for you.
+___*___ If you're using nvm, just run ```nvm install``` and it resolve the proper Node version for you.
 
-* [Reference to install docker compose](https://docs.docker.com/compose/install) on Linux, Mac and Windows
+___*___ [Reference to install docker compose](https://docs.docker.com/compose/install) on Linux, Mac and Windows
 
 ## Principles and concepts
 

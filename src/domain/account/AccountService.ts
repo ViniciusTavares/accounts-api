@@ -1,20 +1,13 @@
-import Account from '../../domain/account/Account';
+import Account from '../../types/Accounts/Account';
 import Filter from '../../types//Accounts/Filter';
 import Sort from '../../types/Accounts/Sort';
-
-type AccountServiceConstructorArgs = {
-  accountRepository: Object
-}
-
-interface IAccountService {
-  fetchAccounts(filter: Filter, sort: Sort, page: number | string) : Promise<Account[]>;
-  fetchAccountsForCSV(filter: Filter, sort: Sort, page: number | string) : any;
-}
+import IAccountService from '../../interfaces/account/IAccountService';
+import AccountServiceArgs from '../../types/Accounts/AccountServiceArgs';
 
 class AccountService implements IAccountService{
   private readonly accountRepository; 
 
-  constructor({ accountRepository }: AccountServiceConstructorArgs) {
+  constructor({ accountRepository } : AccountServiceArgs ) {
     this.accountRepository = accountRepository;
   }
 

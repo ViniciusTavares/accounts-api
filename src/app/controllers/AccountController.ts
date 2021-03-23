@@ -1,12 +1,9 @@
 import { Context, Next } from 'koa';
 
 import AccountService from '../../domain/account/AccountService';
+import IAccountController from '../../interfaces/account/IAccountController';
 import Filter from '../../types/Accounts/Filter';
 import Sort from '../../types/Accounts/Sort';
-
-interface IAccountController {
-  fetchAccounts(ctx: Context, next: Next): void
-}
 
 class AccountController implements IAccountController {
   private readonly accountService : AccountService

@@ -2,9 +2,9 @@ import { Collection, Db, MongoClient } from 'mongodb';
 
 import config from '../../../app/config';
 import transformConnectionString from '../utils/transform-connection-string';
-import DataProvider from './DataProvider'; 
+import IDataProvider from '../../../interfaces/providers/IDataProvider'; 
 
-export default class MongoProvider implements DataProvider {
+export default class MongoProvider implements IDataProvider {
   private static instance: MongoProvider;
 
   private conn: Db;

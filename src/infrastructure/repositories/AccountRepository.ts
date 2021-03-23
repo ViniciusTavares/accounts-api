@@ -1,15 +1,9 @@
 import { Collection } from "mongodb";
-import Account from '../../domain/account/Account';
+import IAccountRepository from "../../interfaces/account/IAccountRepository";
+import Account from '../../types/Accounts/Account';
+import Sort from "../../types/Accounts/Sort";
 
 const limit = 20;
-
-type Sort = { 
-  createdDate: -1 | 1
-}
-
-interface IAccountRepository {
-  fetch(filter: Partial<Account>, sort: Sort, page: number): Promise<Account[]>;
-}
 
 class AccountRepository implements IAccountRepository {
   constructor( 

@@ -14,7 +14,6 @@ import path from 'path';
     console.log('Found files', files);
 
     for( let fileName of files ) {
-        console.log(fileName);
         const contentArray = JSON.parse(fs.readFileSync(path.join(basePath, fileName)).toString());
             
         const collectionName = fileName.replace(/.json/g, '');

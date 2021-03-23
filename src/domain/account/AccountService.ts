@@ -1,29 +1,33 @@
-import Account from '../../types/Accounts/Account';
-import Filter from '../../types//Accounts/Filter';
-import Sort from '../../types/Accounts/Sort';
-import IAccountService from '../../interfaces/account/IAccountService';
-import AccountServiceArgs from '../../types/Accounts/AccountServiceArgs';
+import Account from '../../types/accounts/Account';
+import Filter from '../../types/accounts/Filter';
+import Sort from '../../types/accounts/Sort';
+import IAccountService from '../../interfaces/accounts/IAccountService';
+import AccountServiceArgs from '../../types/accounts/AccountServiceArgs';
 
-class AccountService implements IAccountService{
-  private readonly accountRepository; 
+class AccountService implements IAccountService {
+  private readonly accountRepository;
 
-  constructor({ accountRepository } : AccountServiceArgs ) {
+  constructor({ accountRepository } : AccountServiceArgs) {
     this.accountRepository = accountRepository;
   }
 
-  public async fetchAccounts(filter: Filter, sort: Sort, page: number | string ): Promise<Account[]> {
-  if(filter.firstName) { 
-    filter.firstName = new RegExp(`${filter.firstName}`)
-  }
+  public async fetchAccounts(
+    filter: Filter,
+    sort: Sort,
+    page: number | string
+  ) : Promise<Account[]> {
+    if (filter.firstName) {
+      filter.firstName = new RegExp(`${filter.firstName}`);
+    }
 
-  if(filter.lastName) { 
-    filter.lastName = new RegExp(`${filter.lastName}`)
-  }
+    if (filter.lastName) {
+      filter.lastName = new RegExp(`${filter.lastName}`);
+    }
 
     return this.accountRepository.fetch(filter, sort, page);
   }
 
-  public async fetchAccountsForCSV(filter, sort) : Promise<Account[]> { 
+  public async fetchAccountsForCSV(filter, sort) : Promise<Account[]> {
     const accounts = await this.accountRepository.fetch(filter, sort);
 
     return accounts;

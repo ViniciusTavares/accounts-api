@@ -2,7 +2,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 
 import config from '../../../app/config';
 import transformConnectionString from '../utils/transform-connection-string';
-import IDataProvider from '../../../interfaces/providers/IDataProvider'; 
+import IDataProvider from '../../../interfaces/providers/IDataProvider';
 
 export default class MongoProvider implements IDataProvider {
   private static instance: MongoProvider;
@@ -10,9 +10,6 @@ export default class MongoProvider implements IDataProvider {
   private conn: Db;
 
   private client: MongoClient;
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  private constructor() {}
 
   public static getInstance(): MongoProvider {
     if (!MongoProvider.instance) {

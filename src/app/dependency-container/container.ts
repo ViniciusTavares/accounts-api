@@ -3,13 +3,17 @@ import MongoProvider from '../../infrastructure/storage/Providers/MongoProvider'
 import AccountRepository from '../../infrastructure/repositories/AccountRepository';
 import AccountService from '../../domain/account/AccountService';
 import AccountController from '../controllers/AccountController';
-import config from '../../app/config';
+import config from '../config';
 
 class DependencyContainer {
-  private static instance; 
-  private readonly  accountController;
+  private static instance;
+
+  private readonly accountController;
+
   private readonly accountService;
+
   private readonly accountRepository;
+
   private mongoProvider;
 
   public static getInstance() {
@@ -22,7 +26,9 @@ class DependencyContainer {
 
   constructor() {
     this.mongoProvider = MongoProvider.getInstance();
-    this.accountRepository = new AccountRepository(this.mongoProvider.db(config.database.collections.accounts))
+    this.accountRepository = new AccountRepository(
+      this.mongoProvider.db(config.database.collections.accounts)
+    );
     this.accountService = new AccountService({ accountRepository: this.accountRepository });
     this.accountController = new AccountController(this.accountService);
   }

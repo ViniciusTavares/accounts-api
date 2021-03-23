@@ -8,19 +8,19 @@ import getHealthCheckerRouter from './routers/health-check';
 import MongoProvider from '../infrastructure/storage/Providers/MongoProvider';
 
 const init = async () => {
-    const app = new Koa();
+  const app = new Koa();
 
-    await MongoProvider.getInstance().connect();
+  await MongoProvider.getInstance().connect();
 
-    app.use(bodyParser());
-    app.use(getAccountRouter().routes())
-    app.use(getHealthCheckerRouter().routes())
+  app.use(bodyParser());
+  app.use(getAccountRouter().routes());
+  app.use(getHealthCheckerRouter().routes());
 
-    const PORT = config.port;
+  const PORT = config.port;
 
-    app.listen(PORT);
+  app.listen(PORT);
 };
 
 export default {
-    init
+  init
 };

@@ -1,7 +1,7 @@
-import IAccountRepository from "../../interfaces/account/IAccountRepository";
+import IAccountRepository from '../../interfaces/accounts/IAccountRepository';
 
 type AccountServiceArgs = {
-    accountRepository: IAccountRepository
-}
+  accountRepository: IAccountRepository
+};
 
 export default AccountServiceArgs;

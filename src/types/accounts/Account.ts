@@ -10,5 +10,4 @@ type Account = {
   referredBy?: String
 };
 
-
 export default Account;

@@ -1,7 +1,7 @@
 import Router from '@koa/router';
 import { Context } from 'koa';
 
-export default () : Router => { 
+export default () : Router => {
   const router = new Router({
     prefix: '/health',
   });
@@ -11,5 +11,5 @@ export default () : Router => {
     ctx.status = 200;
   });
 
-  return router
-}
+  return router;
+};

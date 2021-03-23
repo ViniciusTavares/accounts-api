@@ -1,9 +1,8 @@
-import Account from "../../types/Accounts/Account";
-import Sort from "../../types/Accounts/Sort";
+import Account from '../../types/accounts/Account';
+import Sort from '../../types/accounts/Sort';
 
 interface IAccountRepository {
-    fetch(filter: Partial<Account>, sort: Sort, page: number): Promise<Account[]>;
-  }
+  fetch(filter: Partial<Account>, sort: Sort, page: number): Promise<Account[]>;
+}
 
-
-  export default IAccountRepository;
+export default IAccountRepository;

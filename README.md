@@ -37,15 +37,14 @@ Copy the .env.sample to the root folder.
 
 You might need to change the default values, such as DB_PORT and APP_PORT in case they have been used by another application.
 
-Once the env file is set, we can start docker containers
+Once the env file is set, we can start docker containers. The command below will start docker containers, and also run migrations, seeds and start the server on the chosen APP_PORT
 
 ```npm run start:docker:dev```
 
-The command above should start all containers, including the api runnning on the chosen APP_PORT.
-
 ## Migrations and seeds
 
-```npm run db:migrate:up```
+```npm run db:migrate:up``` 
+
 ```npm run db:seed```
 
 ## Tests
@@ -58,5 +57,5 @@ Only unit tests
 
 ```npm run test:unit```
 
-* At the current stage, there is no functional tests. Only one example of unit test. 
+___*___ At the current stage, there is no functional tests. Only one example of unit test. 
 

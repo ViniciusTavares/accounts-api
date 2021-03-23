@@ -8,6 +8,7 @@
     "start:dev": "node -r dotenv/config -r ts-node/register src",
     "db:seed": "node -r dotenv/config -r ts-node/register db/seeds/seed.ts",
     "db:migration:create": "npm mongo-migrate create",
+    "test": "node_modules/.bin/jest tests",
     "test:unit": "node_modules/.bin/jest tests/unit",
     "lint": "eslint ./{src,test}/**/*.ts",
     "lint:fix": "eslint ./{src,test}/**/*.ts --fix"

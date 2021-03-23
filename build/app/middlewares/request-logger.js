@@ -4,12 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const koa_pino_logger_1 = __importDefault(require("koa-pino-logger"));
-const isDevEnv = process.env.NODE_ENV !== 'production';
-const logLevel = 'debug';
+const config_1 = __importDefault(require("../config"));
 function default_1() {
     return koa_pino_logger_1.default({
-        prettyPrint: isDevEnv,
-        level: logLevel,
+        prettyPrint: config_1.default.app.isDevEnv,
+        level: config_1.default.app.logLevel,
     });
 }
 exports.default = default_1;

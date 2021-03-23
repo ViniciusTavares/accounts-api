@@ -27,7 +27,7 @@ class DependencyContainer {
   constructor() {
     this.mongoProvider = MongoProvider.getInstance();
     this.accountRepository = new AccountRepository(
-      this.mongoProvider.db(config.database.collections.accounts)
+      this.mongoProvider.collection(config.database.collections.accounts)
     );
     this.accountService = new AccountService({ accountRepository: this.accountRepository });
     this.accountController = new AccountController(this.accountService);

@@ -6,6 +6,7 @@ import config from './config';
 import getAccountRouter from './routers/account';
 import getHealthCheckerRouter from './routers/health-check';
 import MongoProvider from '../infrastructure/storage/Providers/MongoProvider';
+import Logger from '../infrastructure/logger/Logger';
 
 const init = async () => {
   const app = new Koa();
@@ -16,9 +17,11 @@ const init = async () => {
   app.use(getAccountRouter().routes());
   app.use(getHealthCheckerRouter().routes());
 
-  const PORT = config.port;
+  const PORT = config.app.port;
 
   app.listen(PORT);
+
+  Logger.info(`Server running on Port ${PORT}`);
 };
 
 export default {

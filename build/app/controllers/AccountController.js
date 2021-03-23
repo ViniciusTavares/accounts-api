@@ -13,7 +13,7 @@ class AccountController {
     constructor(accountService) {
         this.accountService = accountService;
     }
-    fetchAccounts(ctx, next) {
+    fetchAccounts(ctx) {
         return __awaiter(this, void 0, void 0, function* () {
             const filter = ctx.query.filter
                 ? JSON.parse(ctx.query.filter)

@@ -19,7 +19,7 @@ export default class MongoProvider implements IDataProvider {
     return MongoProvider.instance;
   }
 
-  public db(name: string): Collection {
+  public collection(name: string): Collection {
     return this.conn.collection(name);
   }
 

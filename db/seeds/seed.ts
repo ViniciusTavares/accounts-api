@@ -5,7 +5,7 @@ import path from 'path';
 (async () => {
     await mongoDb.getInstance().connect();
 
-    const seedsCollection = await mongoDb.getInstance().db('seeds');
+    const seedsCollection = await mongoDb.getInstance().collection('seeds');
 
     const basePath = path.join(__dirname, 'data');
 
@@ -21,7 +21,7 @@ import path from 'path';
         const foundSeed = await seedsCollection.findOne({ fileName });
 
         if(!foundSeed) {
-            const contentCollection = await mongoDb.getInstance().db(collectionName);
+            const contentCollection = await mongoDb.getInstance().collection(collectionName);
                 
             await contentCollection.insertMany(contentArray);
             await seedsCollection.insertOne({ fileName });
@@ -29,4 +29,6 @@ import path from 'path';
             console.log(`Sucessfully seeded ${fileName}`);
         }
     }
+
+    process.exit(0);
 })();

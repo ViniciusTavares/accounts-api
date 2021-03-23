@@ -1,6 +1,17 @@
 version: '3.7'
 
-services: 
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    restart: always
+    env_file: .env
+    container_name: account-api
+    network_mode: host
+    depends_on:
+      - mongodb
+
   mongodb:
       image: mongo:4.2.5
       container_name: account-mongodb

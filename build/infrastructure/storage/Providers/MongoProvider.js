@@ -16,15 +16,13 @@ const mongodb_1 = require("mongodb");
 const config_1 = __importDefault(require("../../../app/config"));
 const transform_connection_string_1 = __importDefault(require("../utils/transform-connection-string"));
 class MongoProvider {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    constructor() { }
     static getInstance() {
         if (!MongoProvider.instance) {
             MongoProvider.instance = new MongoProvider();
         }
         return MongoProvider.instance;
     }
-    db(name) {
+    collection(name) {
         return this.conn.collection(name);
     }
     connection() {

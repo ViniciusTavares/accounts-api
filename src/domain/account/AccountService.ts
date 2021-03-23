@@ -1,14 +1,14 @@
 import Account from '../../domain/account/Account';
+import Filter from '../../types//Accounts/Filter';
+import Sort from '../../types/Accounts/Sort';
 
-
-
-type AccountServiceConstructorArgs = { 
+type AccountServiceConstructorArgs = {
   accountRepository: Object
 }
 
 interface IAccountService {
-  fetchAccounts(filter: any, sort: any) : any;
-  fetchAccountsForCSV(filter: any, sort: any) : any;
+  fetchAccounts(filter: Filter, sort: Sort, page: number | string) : Promise<Account[]>;
+  fetchAccountsForCSV(filter: Filter, sort: Sort, page: number | string) : any;
 }
 
 class AccountService implements IAccountService{
@@ -18,8 +18,16 @@ class AccountService implements IAccountService{
     this.accountRepository = accountRepository;
   }
 
-  public async fetchAccounts(filter, sort) {
-    return this.accountRepository.fetch(filter, sort);
+  public async fetchAccounts(filter: Filter, sort: Sort, page: number | string ): Promise<Account[]> {
+  if(filter.firstName) { 
+    filter.firstName = new RegExp(`${filter.firstName}`)
+  }
+
+  if(filter.lastName) { 
+    filter.lastName = new RegExp(`${filter.lastName}`)
+  }
+
+    return this.accountRepository.fetch(filter, sort, page);
   }
 
   public async fetchAccountsForCSV(filter, sort) : Promise<Account[]> { 

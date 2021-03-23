@@ -1,12 +1,15 @@
 import { Context, Next } from 'koa';
-import AccountService from '../../domain/account/AccountService';
 
-interface IAccountController { 
+import AccountService from '../../domain/account/AccountService';
+import Filter from '../../types/Accounts/Filter';
+import Sort from '../../types/Accounts/Sort';
+
+interface IAccountController {
   fetchAccounts(ctx: Context, next: Next): void
 }
 
 class AccountController implements IAccountController {
-  private readonly accountService : AccountService;
+  private readonly accountService : AccountService
 
   constructor(
     accountService,
@@ -14,15 +17,21 @@ class AccountController implements IAccountController {
     this.accountService = accountService;
   }
 
-  async fetchAccounts(ctx: Context, next: Next) {    
-    const filter = ctx.query.filter; // as filter
-    const sort = ctx.query.sort; // as sort
+  async fetchAccounts(ctx: Context, next: Next) {
+    const filter = ctx.query.filter 
+     ? JSON.parse(ctx.query.filter as string) as Filter
+     : {} as Filter;
 
+    const sort = ctx.query.sort 
+     ? JSON.parse(ctx.query.sort as string) as Sort
+     : {} as Sort;
+
+    const page = ctx.query.page as string;
     
-    const result = await this.accountService.fetchAccounts(filter ?? {}, sort);
+    const result = await this.accountService.fetchAccounts(filter, sort, page);
 
     ctx.response.status = 200;
-    ctx.response.body = result ;
+    ctx.response.body = result;
   }
 }
 

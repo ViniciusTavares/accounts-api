@@ -6,6 +6,7 @@
     "build": "./node_modules/.bin/tsc --build tsconfig.json",
     "start": "node build/src",
     "start:dev": "node -r dotenv/config -r ts-node/register src",
+    "seed": "node -r dotenv/config -r ts-node/register db/seeds/seed.ts",
     "migration:create": "npm mongo-migrate create",
     "test:unit": "node_modules/.bin/jest tests/unit"
   },

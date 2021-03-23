@@ -1,12 +1,12 @@
-import dbConfig from '../src/infrastructure/storage/config';
+import config from '../src/app/config';
 import transformConnectionString from '../src/infrastructure/storage/utils/transform-connection-string';
 
-const connectionString = transformConnectionString(dbConfig.connection);
+const connectionString = transformConnectionString(config.database.connection);
 
 module.exports = {
   mongodb: {
     url: connectionString,
-    databaseName: dbConfig.connection.database,
+    databaseName: config.database.connection.database,
 
     options: {
       useNewUrlParser: true,

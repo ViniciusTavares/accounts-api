@@ -13,9 +13,15 @@ class AccountService {
     constructor({ accountRepository }) {
         this.accountRepository = accountRepository;
     }
-    fetchAccounts(filter, sort) {
+    fetchAccounts(filter, sort, page) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.accountRepository.fetch(filter, sort);
+            if (filter.firstName) {
+                filter.firstName = new RegExp(`${filter.firstName}`);
+            }
+            if (filter.lastName) {
+                filter.lastName = new RegExp(`${filter.lastName}`);
+            }
+            return this.accountRepository.fetch(filter, sort, page);
         });
     }
     fetchAccountsForCSV(filter, sort) {

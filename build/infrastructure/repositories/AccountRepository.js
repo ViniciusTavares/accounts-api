@@ -9,15 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const limit = 20;
 class AccountRepository {
     constructor(db) {
         this.db = db;
     }
-    fetch(filter, sort) {
+    fetch(filter, sort, page = 1) {
         return __awaiter(this, void 0, void 0, function* () {
+            const skip = page > 1
+                ? limit * page
+                : 0;
             return this.db
                 .find(filter)
                 .sort(sort)
+                .skip(skip)
+                .limit(20)
                 .toArray();
         });
     }

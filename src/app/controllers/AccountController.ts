@@ -45,6 +45,15 @@ class AccountController implements IAccountController {
 
     const result = await this.accountService.fetchAccounts(filter, sort, page);
 
+
+    ctx.response.status = 200;
+
+    if (!result || result.length === 0) {
+      ctx.response.body = [];
+
+      return;
+    }
+
     const csv = json2csv.parse(result);
 
     ctx.response.status = 200;

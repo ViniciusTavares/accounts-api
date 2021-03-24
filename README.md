@@ -99,4 +99,18 @@ Examples
 {base}/accounts?filter={"firstName":"Marilie","lastName":"Mitchell"}
 ```
 
+```
+Download Accounts in csv format
+ 
+URL: [GET] {base}/accounts?filters={firstName,lastName,country,mfa}&sort={createdDate}&page=number
+
+Examples
+{base}/accounts/csv
+{base}/accounts/csv?page=2
+{base}/accounts/csv?filter={"firstName":"Marilie","lastName":"Mitchell"}&sort={"createdDate":1}
+{base}/accounts/csv?filter={"firstName":"Marilie","country":"CR"}&sort={"createdDate":1}
+{base}/accounts/csv?filter={"firstName":"M","lastName":"M"}&sort={"createdDate":-1}
+{base}/accounts/csv?filter={"firstName":"Marilie","lastName":"Mitchell"}
+```
+
 

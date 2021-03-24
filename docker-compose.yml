@@ -4,11 +4,14 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: dockerfile.dev
     restart: always
     env_file: .env
+    ports: 
+      - "${APP_PORT}:${APP_PORT}"
     container_name: account-api
-    network_mode: host
+    networks:
+        - account-network
     depends_on:
       - mongodb
 
@@ -16,8 +19,6 @@ services:
       image: mongo:4.2.5
       container_name: account-mongodb
       restart: always
-      volumes:
-            - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
       ports:
         - "${DB_PORT}:27017"
       environment: 

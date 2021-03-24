@@ -9,4 +9,4 @@ COPY . .
 RUN npm i
 RUN npm rebuild
 
-CMD ["npm", "run", "start:docker:dev"]
+CMD ["npm", "run", "start:docker:api"]

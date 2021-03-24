@@ -39,7 +39,20 @@ You might need to change the default values, such as DB_PORT and APP_PORT in cas
 
 Once the env file is set, we can start docker containers. The command below will start docker containers, and also run migrations, seeds and start the server on the chosen APP_PORT
 
-```npm run start:docker:dev```
+```npm run start:docker:local```
+
+## Development
+
+To start only infrastructure containers
+
+```
+npm run start:docker:infra
+```
+
+Then, to start the server with livereload
+```
+npm run start:dev 
+```
 
 ## Migrations and seeds
 
@@ -58,4 +71,23 @@ Only unit tests
 ```npm run test:unit```
 
 ___*___ At the current stage, there is no functional tests. Only one example of unit test. 
+
+## Routes Draft
+
+### Accounts
+
+```
+Fetch Accounts
+ 
+URL: [GET] {base}/accounts?filters={firstName,lastName,country,mfa}&sort={createdDate}&page=number
+
+Examples
+{base}/accounts
+{base}/accounts?page=2
+{base}/accounts?filter={"firstName":"Marilie","lastName":"Mitchell"}&sort={"createdDate":1}
+{base}/accounts?filter={"firstName":"Marilie","country":"CR"}&sort={"createdDate":1}
+{base}/accounts?filter={"firstName":"M","lastName":"M"}&sort={"createdDate":-1}
+{base}/accounts?filter={"firstName":"Marilie","lastName":"Mitchell"}
+```
+
 

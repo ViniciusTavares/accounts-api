@@ -41,6 +41,8 @@ Once the env file is set, we can start docker containers. The command below will
 
 ```npm run start:docker:local```
 
+___*___ When running the app inside the docker containers, change the DB_URL from DB_URL=mongodb://localhost:PORT to DB_URL=mongodb://mongodb:PORT
+
 ## Development
 
 To start only infrastructure containers
@@ -53,6 +55,8 @@ Then, to start the server with livereload
 ```
 npm run start:dev 
 ```
+
+___*___ When running the app outside docker containers, change the DB_URL from DB_URL=mongodb://mongodb:PORT to DB_URL=mongodb://localhost:PORT
 
 ## Migrations and seeds
 

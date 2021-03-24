@@ -14,5 +14,7 @@ export default () : Router => {
 
   router.get('/', (...args) => controller.fetchAccounts(...args));
 
+  router.get('/csv', (...args) => controller.downloadCSVAccounts(...args));
+
   return router;
 };

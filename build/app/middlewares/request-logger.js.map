@@ -1,1 +1,0 @@
-{"version":3,"file":"request-logger.js","sourceRoot":"","sources":["../../../src/app/middlewares/request-logger.ts"],"names":[],"mappings":";;;;;AAAA,sEAAqC;AACrC,uDAA+B;AAE/B;IACE,OAAO,yBAAM,CAAC;QACZ,WAAW,EAAE,gBAAM,CAAC,GAAG,CAAC,QAAQ;QAChC,KAAK,EAAE,gBAAM,CAAC,GAAG,CAAC,QAAQ;KAC3B,CAAC,CAAC;AACL,CAAC;AALD,4BAKC"}

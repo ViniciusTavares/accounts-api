@@ -45,13 +45,18 @@ ___*___ When running the app inside the docker containers, change the DB_URL fro
 
 ## Development
 
-To start only infrastructure containers
+Install packages
+```
+npm install
+```
+
+Init infrastructure containers only
 
 ```
 npm run start:docker:infra
 ```
 
-Then, to start the server with livereload
+Start the server with livereload
 ```
 npm run start:dev 
 ```

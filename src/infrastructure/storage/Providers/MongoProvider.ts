@@ -3,6 +3,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 import config from '../../../app/config';
 import transformConnectionString from '../utils/transform-connection-string';
 import IDataProvider from '../../../interfaces/providers/IDataProvider';
+import Logger from '../../logger/Logger';
 
 export default class MongoProvider implements IDataProvider {
   private static instance: MongoProvider;
@@ -38,7 +39,7 @@ export default class MongoProvider implements IDataProvider {
       await client.connect();
       this.conn = client.db(config.database.connection.database);
     } catch (e) {
-      // logger.error(e.message, dbConfig.connection.url);
+      Logger.error(e.message, config.database.connection.url);
       throw e;
     }
   }
@@ -47,7 +48,7 @@ export default class MongoProvider implements IDataProvider {
     try {
       await this.client.close();
     } catch (e) {
-      // logger.error(e.message, dbConfig.connection.url);
+      Logger.error(e.message, config.database.connection.url);
       throw e;
     }
   }

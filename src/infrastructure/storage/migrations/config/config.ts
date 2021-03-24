@@ -1,5 +1,5 @@
-import config from '../../../app/config';
-import transformConnectionString from '../utils/transform-connection-string';
+import config from '../../../../app/config';
+import transformConnectionString from '../../utils/transform-connection-string';
 
 const connectionString = transformConnectionString(config.database.connection);
 
@@ -14,7 +14,7 @@ module.exports = {
     }
   },
 
-  migrationsDir: 'build/db/migrations',
+  migrationsDir: 'src/infrastructure/storage/migrations',
   changelogCollectionName: 'migrations',
-  migrationFileExtension: '.js'
+  migrationFileExtension: '.ts'
 };

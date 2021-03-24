@@ -45,7 +45,6 @@ class AccountController implements IAccountController {
 
     const result = await this.accountService.fetchAccounts(filter, sort, page);
 
-
     ctx.response.status = 200;
 
     if (!result || result.length === 0) {

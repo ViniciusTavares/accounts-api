@@ -3,7 +3,7 @@ import IAccountRepository from '../../interfaces/accounts/IAccountRepository';
 import Account from '../../types/accounts/Account';
 import Sort from '../../types/accounts/Sort';
 
-const limit = 20;
+// TODO: handle rows limit, 100 is fixed for now
 
 class AccountRepository implements IAccountRepository {
   constructor(
@@ -12,7 +12,12 @@ class AccountRepository implements IAccountRepository {
 
   }
 
-  public async fetch(filter: Partial<Account>, sort: Sort, page: number = 1): Promise<Account[]> {
+  public async fetch(
+    filter: Partial<Account>,
+    sort: Sort,
+    page: number = 1,
+    limit: number = 100
+  ): Promise<Account[]> {
     const skip = page > 1
       ? limit * page
       : 0;
@@ -21,7 +26,7 @@ class AccountRepository implements IAccountRepository {
       .find(filter)
       .sort(sort)
       .skip(skip)
-      .limit(20)
+      .limit(limit)
       .toArray();
   }
 }

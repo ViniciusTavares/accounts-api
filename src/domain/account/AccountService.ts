@@ -14,7 +14,7 @@ class AccountService implements IAccountService {
   public async fetchAccounts(
     filter: Filter,
     sort: Sort,
-    page: number | string
+    page: number | string,
   ) : Promise<Account[]> {
     if (filter.firstName) {
       filter.firstName = new RegExp(`${filter.firstName}`);
@@ -22,6 +22,15 @@ class AccountService implements IAccountService {
 
     if (filter.lastName) {
       filter.lastName = new RegExp(`${filter.lastName}`);
+    }
+
+    if (filter.country) {
+      filter.country = new RegExp(`${filter.country}`);
+    }
+
+
+    if (filter.mfa) {
+      filter.mfa = new RegExp(`${filter.mfa}`);
     }
 
     return this.accountRepository.fetch(filter, sort, page);

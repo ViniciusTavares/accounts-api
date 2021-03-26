@@ -1,5 +1,5 @@
 type Sort = {
-  createdDate: -1 | 1;
+  createdDate?: -1 | 1;
 };
 
 export default Sort;

@@ -1,6 +1,7 @@
 // @ts-ignore
 import bodyParser from 'koa-bodyparser';
 import Koa from 'koa';
+import cors from '@koa/cors';
 
 import config from './config';
 import getAccountRouter from './routers/account';
@@ -14,6 +15,7 @@ const init = async () => {
   await MongoProvider.getInstance().connect();
 
   app.use(bodyParser());
+  app.use(cors());
   app.use(getAccountRouter().routes());
   app.use(getHealthCheckerRouter().routes());
 

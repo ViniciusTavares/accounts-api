@@ -2,6 +2,8 @@
 
 This repository is a sample of Microservices using NodeJS, Typescript, MongoDB, Jest and Domain Driven Design principles. 
 
+Take a look at [Accounts-Web](https://github.com/ViniciusTavares/accounts-web) for front end integration.
+
 ## Tools
 
 - NodeJS

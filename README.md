@@ -56,6 +56,14 @@ Init infrastructure containers only
 npm run start:docker:infra
 ```
 
+Run migrations and seeds
+
+```
+npm run db:migrate:up
+
+npm run db:seed
+```
+
 Start the server with livereload
 ```
 npm run start:dev 
